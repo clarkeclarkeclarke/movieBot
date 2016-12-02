@@ -1,0 +1,40 @@
+import csv
+import requests
+from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulStoneSoup
+
+def filmTitles():
+    url = 'http://www.imdb.com/chart/boxoffice'
+    response = requests.get(url)
+    html = response.content
+
+    soup = BeautifulSoup(html)
+
+
+    film = []
+
+    titles = soup.find_all('td', attrs = {'class':'titleColumn'})
+
+    for link in titles:
+        print (link.a.string)
+        film.append(link.a.string)
+
+    print (film)
+
+def filmGross():
+    url = 'http://www.imdb.com/chart/boxoffice'
+    response = requests.get(url)
+    html = response.content
+
+    money = soup.find_all('td', attrs = {'class':'ratingColumn'})
+
+    for i in money:
+        text = i.text.replace('\n','')
+        text = text.replace('                            ','')
+        text = text.replace('                    ','')
+        #print text
+        val.append(text)
+
+    val = val[::2]
+
+    print (val)
