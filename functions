@@ -37,7 +37,9 @@ def filmGross():
 
     val = val[::2]
 
-    print (val)
+    dictionary = dict(zip(film,val))
+
+    print (dictionary)
     
 def weeksOut():
     url = 'http://www.imdb.com/chart/boxoffice'
@@ -52,5 +54,7 @@ def weeksOut():
         w = w.getText()
         wOut.append(w)
 
-    print (wOut)
+    dictionary = dict(zip(film,wOut))
+
+    print (dictionary)
 
