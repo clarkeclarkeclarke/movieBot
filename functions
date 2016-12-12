@@ -38,3 +38,19 @@ def filmGross():
     val = val[::2]
 
     print (val)
+    
+def weeksOut():
+    url = 'http://www.imdb.com/chart/boxoffice'
+    response = requests.get(url)
+    html = response.content
+
+    weeks = soup.find_all('td', attrs = {'class':'weeksColumn'})
+
+    wOut = []
+
+    for w in weeks:
+        w = w.getText()
+        wOut.append(w)
+
+    print (wOut)
+
