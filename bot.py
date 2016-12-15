@@ -12,14 +12,22 @@ def filmTitles():
 
 
     film = []
+    hashtags = []
 
     titles = soup.find_all('td', attrs = {'class':'titleColumn'})
 
     for link in titles:
         print (link.a.string)
         film.append(link.a.string)
+        
+    for z in film:
+        z = z.replace(' ','')
+        z = z.replace(':','')
+        z = z.replace('.','')
+        z = z.replace('(2015)','')
+        hashtags.append(z)
 
-    print (film)
+    return film+hastags
 
 def filmGross():
     url = 'http://www.imdb.com/chart/boxoffice'
@@ -59,9 +67,9 @@ def weeksOut():
     print (dictionary)
     
 def tweetTop3():
-    api.update_status('The highest grossing movie this weekend was '+film[0]+' which made a strong '+val[0])
-    api.update_status(film[1]+' came in second place at the box office this weekend with '+val[1])
-    api.update_status('In third place at the box office this weekend was '+film[2]+' which earned '+val[2])
+    api.update_status('The highest grossing movie this weekend was '+film[0]+' which made a strong '+val[0]+' #'+hashtags[0]+' #boxoffice')
+    api.update_status(film[1]+' came in second place at the box office this weekend with '+val[1]+' #'+hashtags[1]+' #boxoffice')
+    api.update_status('In third place at the box office this weekend was '+film[2]+' which earned '+val[2]+' #'+hashtags[2]+' #boxoffice')
     
 def tweetRating():
     percent = []
