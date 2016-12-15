@@ -62,4 +62,53 @@ def tweetTop3():
     api.update_status('The highest grossing movie this weekend was '+film[0]+' which made a strong '+val[0])
     api.update_status(film[1]+' came in second place at the box office this weekend with '+val[1])
     api.update_status('In third place at the box office this weekend was '+film[2]+' which earned '+val[2])
+    
+def tweetRating():
+    percent = []
+    hashtags = []
+    film = []
+    users = []
+
+    ratings = soup.find_all('strong')
+    userRatings = soup.find_all('span', attrs = {'class':'value'})
+    titles = soup.find_all('td', attrs = {'class':'overview-top'})
+
+    for name in titles:
+        name = name.a.string
+        name = name.replace(' (2016)','')
+        film.append(name)
+
+    for link in ratings:
+        link = link.string
+        percent.append(link)
+
+    for v in userRatings:
+        v = float(v.string)
+        v = v*10
+        v = int(v)
+        v = str(v)
+        users.append(v)
+
+    percent = percent[-11:]
+    del percent[-1]
+
+    film = film[-10:]
+
+    for z in film:
+        z = z.replace(' ','')
+        z = z.replace(':','')
+        z = z.replace('.','')
+        z = z.replace('(2015)','')
+        hashtags.append(z)
+
+    i = 0
+
+    while i != 10:
+        try:
+            api.update_status(film[i]+' recieved a rating of '+percent[i]+'% from critics while audiences gave it a '+users[i]+'% #'+hashtags[i])
+            time.sleep(240)
+        except:
+            pass
+        i += 1
+
 
