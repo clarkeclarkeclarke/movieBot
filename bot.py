@@ -67,9 +67,15 @@ def weeksOut():
     print (dictionary)
     
 def tweetTop3():
-    api.update_status('The highest grossing movie this weekend was '+film[0]+' which made a strong '+val[0]+' #'+hashtags[0]+' #boxoffice')
-    api.update_status(film[1]+' came in second place at the box office this weekend with '+val[1]+' #'+hashtags[1]+' #boxoffice')
-    api.update_status('In third place at the box office this weekend was '+film[2]+' which earned '+val[2]+' #'+hashtags[2]+' #boxoffice')
+    try:
+        api.update_status('The highest grossing movie this weekend was '+film[0]+' which made a strong '+val[0]+' #'+hashtags[0]+' #boxoffice')
+        time.sleep(120)
+        api.update_status(film[1]+' came in second place at the box office this weekend with '+val[1]+' #'+hashtags[1]+' #boxoffice')
+        time.sleep(120)
+        api.update_status('In third place at the box office this weekend was '+film[2]+' which earned '+val[2]+' #'+hashtags[2]+' #boxoffice')
+        time.sleep(120)
+    except:
+        pass
     
 def tweetRating():
     percent = []
