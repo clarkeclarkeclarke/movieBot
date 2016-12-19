@@ -77,6 +77,21 @@ def tweetTop3():
     except:
         pass
     
+def tweetTop10():
+    places = ['First','Second','Third','Fourth','Fifth','Sixth','Seventh','Eighth','Ninth','Tenth']
+    
+    i = 0
+    
+    while(i < len(film)):
+        try:
+            api.update_status(places[i]+' place at the box office this weekend went to '+film[i]+' which earned '+val[i]+' #'+hashtags[i]+' #boxoffice')
+            time.sleep(240)
+        except:
+            api.update_status(places[i]+' place: '+film[i]+' eanred '+val[i])
+            time.sleep(240)
+        i+=1
+    
+    
 def tweetRating():
     percent = []
     hashtags = []
