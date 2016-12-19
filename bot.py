@@ -87,7 +87,7 @@ def tweetTop10():
             api.update_status(places[i]+' place at the box office this weekend went to '+film[i]+' which earned '+val[i]+' #'+hashtags[i]+' #boxoffice')
             time.sleep(240)
         except:
-            api.update_status(places[i]+' place: '+film[i]+' eanred '+val[i])
+            api.update_status(places[i]+' place: '+film[i]+' earned '+val[i])
             time.sleep(240)
         i+=1
     
